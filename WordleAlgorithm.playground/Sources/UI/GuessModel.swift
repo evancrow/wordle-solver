@@ -45,7 +45,12 @@ public class GuessModel: ObservableObject {
     }
     
     public func updateCanContinue() {
-        if suggestedGuess.count != numberOfLetters {
+        guard possibleWords.count > 0 else {
+            needsReset = true
+            return
+        }
+        
+        guard suggestedGuess.count == numberOfLetters else {
             canContinue = false
             return
         }
@@ -86,8 +91,13 @@ public class GuessModel: ObservableObject {
     }
     
     // MARK: - UI
-    public func updatedSuggestedGuess() {
+    public func updatedSuggestedGuess(exluding word: String? = nil) {
+        if let word = word {
+            possibleWords = possibleWords.filter { $0 != word }
+        }
+        
         suggestedGuess = guesserAlgorithm.getGuessSuggestion(possibleWords: possibleWords)
+        updateCanContinue()
     }
     
     public func reset() {

@@ -2,7 +2,6 @@ import SwiftUI
 
 public struct GuessInterface: View {
     var numberOfLetters = 5
-    
    
     @ObservedObject var model: GuessModel
     
@@ -75,7 +74,7 @@ public struct GuessInterface: View {
             }.disabled(!model.canContinue && !model.isComplete && !model.needsReset)
             
             Button {
-                model.updatedSuggestedGuess()
+                model.updatedSuggestedGuess(exluding: model.suggestedGuess)
             } label: {
                 Text("Refresh Suggestion")
                     .font(.subheadline)

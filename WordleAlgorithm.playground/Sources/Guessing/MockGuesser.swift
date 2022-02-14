@@ -4,7 +4,7 @@ public class MockGuesser {
     var wordHelper: WordHelper
     var guesserAlgorithm: GuesserAlgorithm
     
-    public func runMockWordles(with words: [String], numberOfRuns: Int = 25) {
+    public func runMockWordles(with words: [String], numberOfRuns: Int = 10) {
         // Run through the mock algorithim
         var numberOfGuesses = [Int]()
 
